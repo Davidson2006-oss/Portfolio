@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>David · Web Developer</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== BASE & RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      background-color: #f8fafc;
+      transition: background-color 0.3s ease, color 0.2s ease;
+    }
+
+    body.dark {
+      background-color: #0f172a;
+      color: #e2e8f0;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      background-color: #ffffff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    body.dark header {
+      background-color: #1e293b;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    header h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    body.dark nav a {
+      color: #cbd5e1;
+    }
+
+    nav a:hover {
+      color: #3b82f6;
+    }
+
+    .toggle {
+      background: #e2e8f0;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #1e293b;
+      transition: all 0.2s;
+    }
+
+    body.dark .toggle {
+      background: #334155;
+      color: #f1f5f9;
+    }
+
+    .toggle:hover {
+      background: #cbd5e1;
+    }
+
+    body.dark .toggle:hover {
+      background: #475569;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+    }
+
+    body.dark .hero {
+      background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #0f172a;
+    }
+
+    body.dark .hero h1 {
+      color: #f8fafc;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      color: #475569;
+    }
+
+    body.dark .hero p {
+      color: #94a3b8;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+      box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn:hover {
+      background-color: #2563eb;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    body.dark .btn {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ===== SECTION TITLES ===== */
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      border-radius: 2px;
+    }
+
+    /* ===== ABOUT (with image) ===== */
+    #about {
+      padding: 3rem 5%;
+    }
+
+    .about-container {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    body.dark .about-container {
+      background: #1e293b;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #3b82f6;
+      flex-shrink: 0;
+    }
+
+    .about-container p {
+      font-size: 1.1rem;
+      color: #334155;
+      margin: 0;
+      background: none;
+      padding: 0;
+      box-shadow: none;
+    }
+
+    body.dark .about-container p {
+      color: #e2e8f0;
+      background: none;
+    }
+
+    /* ===== SKILLS ===== */
+    #skills {
+      padding: 3rem 5%;
+      background-color: #f1f5f9;
+    }
+
+    body.dark #skills {
+      background-color: #1e293b;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .skill {
+      background: white;
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 500;
+      color: #1e293b;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    body.dark .skill {
+      background: #0f172a;
+      color: #e2e8f0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .skill:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ===== PROJECTS (with images) ===== */
+    #projects {
+      padding: 3rem 5%;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .project {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body.dark .project {
+      background: #1e293b;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .project img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 1.2rem;
+      background: #e2e8f0;
+    }
+
+    .project h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+      color: #0f172a;
+    }
+
+    body.dark .project h3 {
+      color: #f1f5f9;
+    }
+
+    .project p {
+      color: #475569;
+      margin-bottom: 0.5rem;
+    }
+
+    body.dark .project p {
+      color: #94a3b8;
+    }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      padding: 3rem 5%;
+      background-color: #f1f5f9;
+    }
+
+    body.dark #contact {
+      background-color: #1e293b;
+    }
+
+    .contact {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .contact input,
+    .contact textarea {
+      padding: 1rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      background: white;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    body.dark .contact input,
+    body.dark .contact textarea {
+      background: #0f172a;
+      border-color: #334155;
+      color: #e2e8f0;
+    }
+
+    .contact input:focus,
+    .contact textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    .contact .btn {
+      align-self: flex-start;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #ffffff;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    body.dark footer {
+      background-color: #1e293b;
+      color: #94a3b8;
+      border-top: 1px solid #334155;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 1rem;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .about-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .profile-img {
+        width: 130px;
+        height: 130px;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .contact .btn {
+        align-self: stretch;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .btn {
+        padding: 0.7rem 1.5rem;
+      }
+
+      .skill {
+        padding: 0.5rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>David</h2>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <button class="toggle" onclick="toggleDark()">Dark</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Hello, I'm David</h1>
+    <p>A passionate web developer building responsive websites using HTML, CSS and JavaScript.</p>
+    <button class="btn" onclick="scrollToSection('projects')">View My Work</button>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-container">
+      <!-- Profile image (placeholder) -->
+      <img src="IMG_20260104_090620_834.jpg" alt="Akande Obaloluwa David" class="profile-img">
+      <p>
+        My name is Akande Obaloluwa David. I am passionate about technology and web development.
+        I enjoy building clean, responsive, and user-friendly websites using modern web technologies.
+        I am constantly learning and working on new projects to improve my skills and grow as a developer.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills">
+      <div class="skill">HTML</div>
+      <div class="skill">CSS</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">Responsive Design</div>
+      <div class="skill">GitHub</div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects">
+      <div class="project">
+        <img src="dman.jpg.png" alt="Portfolio website preview">
+        <h3>Portfolio Website</h3>
+        <p>A personal portfolio website to showcase my projects and skills.</p>
+      </div>
+      <div class="project">
+        <img src="hotel.png" alt="Hotel website preview">
+        <h3>Hotel Website</h3>
+        <p>A responsive hotel booking website with modern UI design.</p>
+      </div>
+      <div class="project">
+        <img src="store.jpg.png" alt="E-commerce website preview">
+        <h3>E-commerce Website</h3>
+        <p>An online store layout designed for selling jewelry products.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <div class="contact">
+      <input type="text" placeholder="Your Name">
+      <input type="email" placeholder="Your Email">
+      <textarea rows="5" placeholder="Your Message"></textarea>
+      <button class="btn">Send Message</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Akande Obaloluwa David | Portfolio</p>
+  </footer>
+
+  <script>
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+
+    function toggleDark() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
+</body>
+</html>
